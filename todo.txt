@@ -1,3 +1,9 @@
 For now:
 Dalton —— querying and re
 Raymond —— Flask and website
+
+app.py
+	flask webpage
+	user input
+utils.py
+	all parsing of user input
