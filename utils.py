@@ -4,7 +4,7 @@ import urllib2
 import bs4
 
 def parse_raw(raw):
-    """Parses raw input for a keyword and Google search query.
+    """ Parses raw input for a keyword and Google search query.
     
     Args:
         raw: The input directly from the web form.
@@ -20,12 +20,34 @@ def parse_raw(raw):
     return [keyword, raw]
 
 def search(keyword, query):
-    """Searches the query using Google and then gets the answer based on keyword.
-    
+    """ Searches the query using Google and then gets the answer based on keyword.
+        
+        Pulls only the top 10 results.
+        
     Args:
-        keyword: Who?
+        keyword: e.g., "who"
         
         query: A string.
+    
+    Returns:
+        A list with three answers in order of decreasing "correctness".
+        Answers default to empty strings.
     """
+    pages = google.search(query, num=10, start=0, stop=10)
     page_list = []
-    for
+    for p in pages:
+        page_list.append(p)
+    
+    for i in range(10):
+        url = urllib2.urlopen(page_list[i])
+        page = url.read().decode('utf-8')
+        
+        soup = bs4.BeautifulSoup(page, 'html.parser')
+        raw = soup.get_text(page)
+        text = raw.sub(u'[\t\n ]+', ' ', raw)
+        print text
+
+if __name__ == "__main__":
+    query = '   who is fred'
+    keyword = parse_raw(query)
+    search(keyword, query)
