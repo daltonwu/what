@@ -38,13 +38,14 @@ def search(keyword, query):
     for p in pages:
         page_list.append(p)
     
-    for i in range(10):
+    for i in range(1):
         url = urllib2.urlopen(page_list[i])
         page = url.read().decode('utf-8')
         
         soup = bs4.BeautifulSoup(page, 'html.parser')
         raw = soup.get_text(page)
-        text = raw.sub(u'[\t\n ]+', ' ', raw)
+        pattern = re.compile('[\t\n ]')
+        text = pattern.sub(' ', raw)
         print text
 
 if __name__ == "__main__":
