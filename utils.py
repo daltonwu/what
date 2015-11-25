@@ -46,7 +46,7 @@ def search(keyword, query):
         raw = soup.get_text(page)
         pattern = re.compile('[\t\n ]')
         text = pattern.sub(' ', raw)
-        print text
+        print text[:120]
 
 if __name__ == "__main__":
     query = '   who is fred'
