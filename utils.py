@@ -33,20 +33,21 @@ def search(keyword, query):
         A list with three answers in order of decreasing "correctness".
         Answers default to empty strings.
     """
-    pages = google.search(query, num=10, start=0, stop=10)
+    num = 1
+    pages = google.search(query, num=num, start=0, stop=num)
     page_list = []
     for p in pages:
         page_list.append(p)
     
-    for i in range(1):
+    for i in range(num):
         url = urllib2.urlopen(page_list[i])
         page = url.read().decode('utf-8')
         
-        soup = bs4.BeautifulSoup(page, 'html.parser')
+        soup = bs4.BeautifulSoup(page)
         raw = soup.get_text(page)
         pattern = re.compile('[\t\n ]')
         text = pattern.sub(' ', raw)
-        print text[:120]
+        print text[0]
 
 if __name__ == "__main__":
     query = '   who is fred'
