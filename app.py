@@ -10,7 +10,7 @@ def home():
     else:
         query = request.form['query']
         answers = utils.answer(query)
-        return render_template("answer.html", answers = answers)
+        return render_template("answer.html", answers = answers, query=query)
 
 if __name__ == "__main__":
     app.debug = True

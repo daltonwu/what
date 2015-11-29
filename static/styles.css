@@ -11,6 +11,10 @@
 	font-family: 'Brush Script MT', cursive;
 }
 
+.center{
+	text-align:center;
+}
+
 .searchbar{
 	top:50%;
 	position:absolute;
