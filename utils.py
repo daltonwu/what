@@ -46,7 +46,13 @@ def get_names(text):
 def validate(name):
 	"""
 	Input: A String of a "name"
-	Output: Whether or not it's true that the word is not common
+	Output: Whether or not it's true that the words in the name are not common
+	
+	>>> validate("Yes No")
+	False
+
+	>>> validate("Tobey Maguire")
+	True
 	"""
 	w_list = open("common_words.txt").readlines()
 	w_split = name.split(' ')
@@ -61,7 +67,6 @@ def find_names(dic):
 	"""
 	Input: Dictionary to find name from
 	Output: List of top 10 names and their frequency in order hi->low
-	[["Name Here",10],["Other Name",15]]
 	"""
 	name_list = []
 	for name in dic.keys():
@@ -85,3 +90,6 @@ def answer(query):
 	return find_names(dic)
 
 #print answer("Who lives in a pineapple under the sea?")
+if __name__ == "__main__":
+	import doctest
+	doctest.testmod()
